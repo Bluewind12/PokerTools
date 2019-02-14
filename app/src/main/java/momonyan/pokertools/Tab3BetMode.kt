@@ -7,7 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 
 class Tab3BetMode : Fragment() {
+    //表示用レイアウト
+    private lateinit var viewLayout: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.tab3_bet_layout, container, false)
+        viewLayout = inflater.inflate(R.layout.tab3_bet_layout, container, false)
+
+        //表示に返却
+        return viewLayout
     }
 }
