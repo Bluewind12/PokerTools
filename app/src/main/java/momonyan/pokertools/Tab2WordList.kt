@@ -25,9 +25,11 @@ class Tab2WordList : Fragment() {
         wordNameList = resources.getStringArray(R.array.roleListJp)
         wordNameEngList = resources.getStringArray(R.array.roleListEng)
         // データ作成
-        for (i in 1..20) {
-            mDataList.add(WordDataClass("eng $i", "jp $i", "test $i"))
-            Log.d("TabDataSet", "Tab2:DataNum $i")
+        if (mDataList.isEmpty()) {
+            for (i in 1..20) {
+                mDataList.add(WordDataClass("eng $i", "jp $i", "test $i"))
+                Log.d("TabDataSet", "Tab2:DataNum $i")
+            }
         }
         // Adapter作成
         val adapter = WordAdapter(mDataList)

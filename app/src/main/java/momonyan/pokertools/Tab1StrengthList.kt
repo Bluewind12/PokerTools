@@ -25,9 +25,11 @@ class Tab1StrengthList : Fragment() {
         roleNameList = resources.getStringArray(R.array.roleListJp)
         roleNameEngList = resources.getStringArray(R.array.roleListEng)
         // データ作成
-        for (i in 0 until roleNameEngList.size) {
-            mDataList.add(RoleDataClass("eng ${roleNameEngList[i]}", "jp ${roleNameList[i]}", "test $i"))
-            Log.d("TabDataSet", "Tab1:DataNum $i")
+        if (mDataList.isEmpty()) {
+            for (i in 0 until roleNameEngList.size) {
+                mDataList.add(RoleDataClass("eng ${roleNameEngList[i]}", "jp ${roleNameList[i]}", "test $i"))
+                Log.d("TabDataSet", "Tab1:DataNum $i")
+            }
         }
         // Adapter作成
         val adapter = RoleAdapter(mDataList)
