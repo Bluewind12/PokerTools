@@ -5,11 +5,8 @@
             android:left="10sp"
             android:right="10sp"
             android:top="10sp"/>
-
     <solid android:color="#FFFFFF"/>
-
     <corners android:radius="5sp"/>
-
     <stroke android:color="@color/colorPrimary"
             android:width="10sp"/>
 </shape>
