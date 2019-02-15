@@ -24,8 +24,9 @@
                 android:textSize="24sp"/>
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
-                android:id="@+id/imageView" android:layout_weight="1" android:scaleType="fitXY"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView" android:layout_weight="1" android:scaleType="fitXY"
+                app:srcCompat="@mipmap/ic_launcher_round"/>
         <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp" android:layout_weight="1"/>

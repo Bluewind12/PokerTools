@@ -27,7 +27,7 @@ class Tab2WordList : Fragment() {
         // データ作成
         for (i in 1..20) {
             mDataList.add(WordDataClass("eng $i", "jp $i", "test $i"))
-            Log.d("TestTag", "$i")
+            Log.d("TabDataSet", "Tab2:DataNum $i")
         }
         // Adapter作成
         val adapter = WordAdapter(mDataList)

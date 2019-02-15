@@ -27,7 +27,7 @@ class Tab1StrengthList : Fragment() {
         // データ作成
         for (i in 0 until roleNameEngList.size) {
             mDataList.add(RoleDataClass("eng ${roleNameEngList[i]}", "jp ${roleNameList[i]}", "test $i"))
-            Log.d("TestTag", "$i")
+            Log.d("TabDataSet", "Tab1:DataNum $i")
         }
         // Adapter作成
         val adapter = RoleAdapter(mDataList)
