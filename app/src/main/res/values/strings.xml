@@ -1,9 +1,36 @@
 <resources>
     <string name="app_name">PokerTools</string>
 
-    <!--タブ-->
+    <!-- タブ -->
     <string name="tab1">役一覧</string>
     <string name="tab2">単語集</string>
     <string name="tab3">おまけ</string>
+
+    <!-- 役名 -->
+    <string-array name="roleListJp">
+        <item>ロイヤルストレートフラッシュ</item>
+        <item>ストレートフラッシュ</item>
+        <item>フォーカード</item>
+        <item>フルハウス</item>
+        <item>フラッシュ</item>
+        <item>ストレート</item>
+        <item>スリーカード</item>
+        <item>ツーペア</item>
+        <item>ワンペア</item>
+        <item>ハイカード(ぶた)</item>
+    </string-array>
+    <string-array name="roleListEng">
+        <item>Royal Flush</item>
+        <item>Straight Flush</item>
+        <item>Four Of A Kind</item>
+        <item>Full House</item>
+        <item>Flash</item>
+        <item>Straight</item>
+        <item>Three Of A Kind</item>
+        <item>Two Pair</item>
+        <item>One Pair</item>
+        <item>High Card</item>
+    </string-array>
+
 
 </resources>
