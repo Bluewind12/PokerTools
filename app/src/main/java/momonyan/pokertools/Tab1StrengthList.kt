@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.tab1_layout.view.*
+import momonyan.pokertools.Role.RoleAdapter
+import momonyan.pokertools.Role.RoleDataClass
 
 class Tab1StrengthList : Fragment() {
     //表示用レイアウト
@@ -23,12 +25,12 @@ class Tab1StrengthList : Fragment() {
         roleNameList = resources.getStringArray(R.array.roleListJp)
         roleNameEngList = resources.getStringArray(R.array.roleListEng)
         // データ作成
-        for (i in 1..20) {
-            mDataList.add(RoleDataClass("eng $i", "jp $i", "test $i"))
+        for (i in 0 until roleNameEngList.size) {
+            mDataList.add(RoleDataClass("eng ${roleNameEngList[i]}", "jp ${roleNameList[i]}", "test $i"))
             Log.d("TestTag", "$i")
         }
         // Adapter作成
-        val adapter = RoleAdapter(this, mDataList)
+        val adapter = RoleAdapter(mDataList)
 
         // RecyclerViewにAdapterとLayoutManagerの設定
         viewLayout.tab1RecyclerView.adapter = adapter
