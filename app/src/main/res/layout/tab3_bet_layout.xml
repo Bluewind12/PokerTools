@@ -1,68 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
-    <Button
-            android:text="@string/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/button"
-            android:background="@drawable/color_menu_bar_background"
-            app:layout_constraintHorizontal_bias="0.498" android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/editText4"/>
-    <TextView
-            android:text="@string/people"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp" android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
-            android:textSize="24sp" android:textColor="@color/colorAccent"/>
-    <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/textView" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp" android:id="@+id/spinner" android:spinnerMode="dropdown"
-            android:entries="@array/peopleNum" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"/>
-    <TextView
-            android:text="@string/newCoin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" android:textSize="24sp"
-            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/spinner"
-            android:layout_marginStart="24dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" android:textColor="@color/colorAccent"/>
-    <TextView
-            android:text="@string/betCoin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3" android:textSize="24sp"
-            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/editText3"
-            android:layout_marginStart="24dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" android:textColor="@color/colorAccent"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText3"
-            app:layout_constraintStart_toStartOf="@+id/textView2" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" android:hint="最初に持っているコイン数"
-            android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="32dp"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText4"
-            app:layout_constraintStart_toStartOf="@+id/textView3" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" android:hint="ベースとなる掛け金"
-            android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="32dp"
-            android:layout_marginTop="8dp"/>
-</android.support.constraint.ConstraintLayout>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:text="@string/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/betModeStartButton"
+                android:background="@drawable/color_menu_bar_background"
+                app:layout_constraintHorizontal_bias="0.498" android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/baseBetCoinEditText"/>
+        <TextView
+                android:text="@string/people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp" android:layout_marginTop="32dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="24sp" android:textColor="@color/colorAccent"/>
+        <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textView" android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp" android:id="@+id/betPeopleSpinner" android:spinnerMode="dropdown"
+                android:entries="@array/peopleNum" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        <TextView
+                android:text="@string/newCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" android:textSize="24sp"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/betPeopleSpinner"
+                android:layout_marginStart="24dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="24dp" android:textColor="@color/colorAccent"/>
+        <TextView
+                android:text="@string/betCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" android:textSize="24sp"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/haveCoinsEditText"
+                android:layout_marginStart="24dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="24dp" android:textColor="@color/colorAccent"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/haveCoinsEditText"
+                app:layout_constraintStart_toStartOf="@+id/textView2" android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" android:hint="最初に持っているコイン数"
+                android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="32dp"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/baseBetCoinEditText"
+                app:layout_constraintStart_toStartOf="@+id/textView3" android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" android:hint="ベースとなる掛け金"
+                android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="8dp"/>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
