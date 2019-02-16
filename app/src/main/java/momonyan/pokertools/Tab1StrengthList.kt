@@ -26,7 +26,6 @@ class Tab1StrengthList : Fragment() {
         roleNameList = resources.getStringArray(R.array.roleListJp)
         roleNameEngList = resources.getStringArray(R.array.roleListEng)
         roleDescription = resources.getStringArray(R.array.roleDescription)
-
         // データ作成
         if (mDataList.isEmpty()) {
             for (i in 0 until roleNameEngList.size) {

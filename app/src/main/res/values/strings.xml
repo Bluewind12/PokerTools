@@ -17,7 +17,7 @@
         <item>スリーカード</item>
         <item>ツーペア</item>
         <item>ワンペア</item>
-        <item>ハイカード(ぶた)</item>
+        <item>ハイカード</item>
     </string-array>
     <string-array name="roleListEng">
         <item>Royal Flush</item>
@@ -33,7 +33,7 @@
     </string-array>
     <string-array name="roleDescription">
         <item>10.J.Q.K.Aで5枚が全て同じマーク\n別名「ロイヤルストレートフラッシュ」</item>
-        <item>連続した5つの数字で5枚全てが同じマーク\n 別名「クワッズ」「フォー・オブ・ア・カインド</item>
+        <item>連続した5つの数字で5枚全てが同じマーク\n 別名「クワッズ」「フォー・オブ・ア・カインド」</item>
         <item>同じ数字のカードを4枚揃える役</item>
         <item>3カードと1ペアを作る役</item>
         <item>5枚全てが同じマークという役</item>
@@ -45,4 +45,14 @@
     </string-array>
 
 
+    <!--レイアウト内で使用-->
+    <string name="people">人数</string>
+    <string-array name="peopleNum">
+        <item>1人</item>
+        <item>2人</item>
+        <item>3人</item>
+        <item>4人</item>
+    </string-array>
+    <string name="newCoin">初期コイン数</string>
+    <string name="start">スタート</string>
 </resources>
