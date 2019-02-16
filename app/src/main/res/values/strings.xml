@@ -54,5 +54,6 @@
         <item>4人</item>
     </string-array>
     <string name="newCoin">初期コイン数</string>
+    <string name="betCoin">基本掛け金</string>
     <string name="start">スタート</string>
 </resources>
