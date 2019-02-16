@@ -8,7 +8,7 @@
 
     <!-- 役名 -->
     <string-array name="roleListJp">
-        <item>ロイヤルストレートフラッシュ</item>
+        <item>ロイヤルフラッシュ</item>
         <item>ストレートフラッシュ</item>
         <item>フォーカード</item>
         <item>フルハウス</item>
@@ -30,6 +30,18 @@
         <item>Two Pair</item>
         <item>One Pair</item>
         <item>High Card</item>
+    </string-array>
+    <string-array name="roleDescription">
+        <item>10.J.Q.K.Aで5枚が全て同じマーク\n別名「ロイヤルストレートフラッシュ」</item>
+        <item>連続した5つの数字で5枚全てが同じマーク\n 別名「クワッズ」「フォー・オブ・ア・カインド</item>
+        <item>同じ数字のカードを4枚揃える役</item>
+        <item>3カードと1ペアを作る役</item>
+        <item>5枚全てが同じマークという役</item>
+        <item>5枚の数字が連続している役\nAは特別な役割で、「A,2,3,4,5」「10,J,Q,K,A」が成立する。\n 「K,A,2,3,4」は成立しない</item>
+        <item>同じ数字のカードを3枚揃える役\n別名「スリー・オブ・ア・カインド」「セット」「トリップス」</item>
+        <item>5枚の中でペアが2つ出来ている役</item>
+        <item>ペアが1つの役</item>
+        <item>役が存在しない状態\n別名「ブタ」</item>
     </string-array>
 
 
