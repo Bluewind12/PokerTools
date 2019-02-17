@@ -56,4 +56,10 @@
     <string name="newCoin">初期コイン数</string>
     <string name="betCoin">基本掛け金</string>
     <string name="start">スタート</string>
+
+    <!-- ベット画面 -->
+    <string name="call">コール</string>
+    <string name="raise">レイズ</string>
+    <string name="fold">フォールド</string>
+    <string name="playerBet">所持%dコイン:掛け%dコイン</string>
 </resources>
