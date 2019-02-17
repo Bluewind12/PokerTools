@@ -35,11 +35,11 @@
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="18dp"
             android:id="@+id/betCoinButton1"
             app:layout_constraintStart_toStartOf="@+id/callButton1"
             app:layout_constraintEnd_toEndOf="@+id/callButton1"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/callButton1"/>
+            android:layout_marginBottom="64dp" app:layout_constraintBottom_toBottomOf="parent"/>
     <Button
             android:text="@string/call"
             android:layout_width="wrap_content"
@@ -72,9 +72,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/betCoinButton2"
             android:rotation="90" app:layout_constraintBottom_toBottomOf="@+id/callButton2"
-            app:layout_constraintStart_toEndOf="@+id/callButton2"
             app:layout_constraintTop_toTopOf="@+id/callButton2"
-    />
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="64dp"
+            android:layout_marginStart="64dp"/>
     <Button
             android:text="@string/call"
             android:layout_width="wrap_content"
@@ -108,8 +108,7 @@
             android:id="@+id/betCoinButton3"
             app:layout_constraintStart_toStartOf="@+id/callButton3"
             app:layout_constraintEnd_toEndOf="@+id/callButton3"
-            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/callButton3"
-            android:rotation="180"/>
+            android:rotation="180" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="64dp"/>
     <Button
             android:text="@string/call"
             android:layout_width="wrap_content"
@@ -138,25 +137,45 @@
             android:layout_marginBottom="64dp" android:rotation="270"
             android:background="@drawable/color_menu_bar_background"/>
     <TextView
-            android:text="TextView"
-            android:layout_width="59dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/betCoinButton4"
             app:layout_constraintBottom_toBottomOf="@+id/callButton4"
-            app:layout_constraintTop_toTopOf="@+id/callButton4" app:layout_constraintEnd_toStartOf="@+id/callButton4"
-            android:rotation="270"/>
+            app:layout_constraintTop_toTopOf="@+id/callButton4"
+            android:rotation="270" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
+            android:text="TestText"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_delete"
             android:id="@+id/endButton"
             android:background="@drawable/color_menu_bar_background"
-            app:layout_constraintStart_toStartOf="@+id/raiseButton3" android:layout_marginTop="35dp"
-            app:layout_constraintTop_toBottomOf="@+id/raiseButton3"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="128dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp" app:layout_constraintTop_toTopOf="parent"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_delete"
             android:id="@+id/endButton2"
-            android:background="@drawable/color_menu_bar_background" android:layout_marginBottom="35dp"
-            app:layout_constraintEnd_toEndOf="@+id/raiseButton1"
-            app:layout_constraintBottom_toTopOf="@+id/raiseButton1"/>
+            android:background="@drawable/color_menu_bar_background" android:layout_marginBottom="128dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="128dp"
+            android:layout_marginRight="128dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/betCoinsText" android:layout_marginBottom="256dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/betCoinsText2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="256dp" android:rotation="180"/>
 </android.support.constraint.ConstraintLayout>

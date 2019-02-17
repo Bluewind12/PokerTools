@@ -1,5 +1,6 @@
 package momonyan.pokertools
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -60,6 +61,11 @@ class Tab3BetMode : Fragment() {
                     .show()
             } else {
                 Log.d("CheckTag", "$haveCoin : $baseBetCoin : $playNum")
+                val intent = Intent(context, BetModeActivity::class.java)
+                intent.putExtra("Player", playNum)
+                intent.putExtra("BaseBet", baseBetCoin)
+                intent.putExtra("Coin", haveCoin)
+                startActivity(intent)
             }
         }
         //表示に返却
