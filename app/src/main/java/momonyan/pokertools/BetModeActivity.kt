@@ -85,8 +85,11 @@ class BetModeActivity : AppCompatActivity() {
             betCoinsText2.visibility = View.INVISIBLE
             endButton.visibility = View.INVISIBLE
         }
+        haveCoin[0] = intent.getIntExtra("Coin", 100) - baseBet
+        haveCoin[1] = intent.getIntExtra("Coin2", 100) - baseBet
+        haveCoin[2] = intent.getIntExtra("Coin3", 100) - baseBet
+        haveCoin[3] = intent.getIntExtra("Coin4", 100) - baseBet
         for (i in 0 until 4) {
-            haveCoin[i] = intent.getIntExtra("Coin", 100) - baseBet
             playerBetCoins[i] = baseBet
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
         }

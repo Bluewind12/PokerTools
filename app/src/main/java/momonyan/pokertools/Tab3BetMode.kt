@@ -3,7 +3,6 @@ package momonyan.pokertools
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.text.InputFilter
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,18 +26,37 @@ class Tab3BetMode : Fragment() {
             }
         }
         viewLayout.haveCoinsEditText.filters = arrayOf(inputFilter)
+        viewLayout.haveCoinsEditText2.filters = arrayOf(inputFilter)
+        viewLayout.haveCoinsEditText3.filters = arrayOf(inputFilter)
+        viewLayout.haveCoinsEditText4.filters = arrayOf(inputFilter)
         viewLayout.baseBetCoinEditText.filters = arrayOf(inputFilter)
 
         viewLayout.betModeStartButton.setOnClickListener {
+            val intent = Intent(context, BetModeActivity::class.java)
             val haveCoin = if (viewLayout.haveCoinsEditText.text.toString() != "") {
                 viewLayout.haveCoinsEditText.text.toString().toInt()
             } else {
-                -1
+                100
+            }
+            val haveCoin2 = if (viewLayout.haveCoinsEditText2.text.toString() != "") {
+                viewLayout.haveCoinsEditText2.text.toString().toInt()
+            } else {
+                100
+            }
+            val haveCoin3 = if (viewLayout.haveCoinsEditText3.text.toString() != "") {
+                viewLayout.haveCoinsEditText3.text.toString().toInt()
+            } else {
+                100
+            }
+            val haveCoin4 = if (viewLayout.haveCoinsEditText4.text.toString() != "") {
+                viewLayout.haveCoinsEditText4.text.toString().toInt()
+            } else {
+                100
             }
             val baseBetCoin = if (viewLayout.baseBetCoinEditText.text.toString() != "") {
                 viewLayout.baseBetCoinEditText.text.toString().toInt()
             } else {
-                -1
+                1
             }
             val playNum = when (viewLayout.betPeopleSpinner.selectedItem.toString()) {
                 "1人" -> 1
@@ -47,26 +65,16 @@ class Tab3BetMode : Fragment() {
                 "4人" -> 4
                 else -> error("スピナーエラー")
             }
-            if (haveCoin == -1 && baseBetCoin == -1) {
-                AlertDialog.Builder(context!!)
-                    .setTitle("入力エラー")
-                    .setMessage("入力されていません")
-                    .setPositiveButton("OK", null)
-                    .show()
-            } else if (haveCoin < baseBetCoin) {
-                AlertDialog.Builder(context!!)
-                    .setTitle("少ないです")
-                    .setMessage("基本掛けコインに対して\n初期コインが少なすぎます")
-                    .setPositiveButton("OK", null)
-                    .show()
-            } else {
-                Log.d("CheckTag", "$haveCoin : $baseBetCoin : $playNum")
-                val intent = Intent(context, BetModeActivity::class.java)
-                intent.putExtra("Player", playNum)
-                intent.putExtra("BaseBet", baseBetCoin)
-                intent.putExtra("Coin", haveCoin)
-                startActivity(intent)
-            }
+
+            Log.d("CheckTag", "$haveCoin : $baseBetCoin : $playNum")
+            intent.putExtra("Player", playNum)
+            intent.putExtra("BaseBet", baseBetCoin)
+            intent.putExtra("Coin", haveCoin)
+            intent.putExtra("Coin2", haveCoin2)
+            intent.putExtra("Coin3", haveCoin3)
+            intent.putExtra("Coin4", haveCoin4)
+            startActivity(intent)
+
         }
         //表示に返却
         return viewLayout
