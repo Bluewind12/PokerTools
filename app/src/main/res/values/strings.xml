@@ -48,7 +48,6 @@
     <!--レイアウト内で使用-->
     <string name="people">人数</string>
     <string-array name="peopleNum">
-        <item>1人</item>
         <item>2人</item>
         <item>3人</item>
         <item>4人</item>
@@ -63,4 +62,5 @@
     <string name="fold">フォールド</string>
     <string name="playerBet">所持%d</string>
     <string name="nowBet">現在の掛けコイン%d</string>
+    <string name="winner">勝った</string>
 </resources>

@@ -25,7 +25,6 @@ class BetModeActivity : AppCompatActivity() {
     private var betCoin = 0
     private var lastRaisePlayer = 0
     private var playerState: MutableList<String> = mutableListOf("play", "play", "play", "play")
-    private var baseState: MutableList<String> = mutableListOf("play", "play", "play", "play")
     private var haveCoin: MutableList<Int> = mutableListOf(0, 0, 0, 0)
     private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)
     private var baseBet = 0
@@ -86,7 +85,6 @@ class BetModeActivity : AppCompatActivity() {
             betCoinsText2.visibility = View.INVISIBLE
             endButton.visibility = View.INVISIBLE
         }
-        baseState = playerState
         haveCoin[0] = intent.getIntExtra("Coin", 100) - baseBet
         haveCoin[1] = intent.getIntExtra("Coin2", 100) - baseBet
         haveCoin[2] = intent.getIntExtra("Coin3", 100) - baseBet
@@ -186,6 +184,7 @@ class BetModeActivity : AppCompatActivity() {
         //フォールド
         buttons[1].setOnClickListener {
             playerState[player] = "fold"
+
             nextPlayerAdd()
         }
         //レイズ
@@ -199,17 +198,32 @@ class BetModeActivity : AppCompatActivity() {
             betCoinsText2.text = getString(R.string.nowBet, betCoin)
             textViews[player].text = getString(R.string.playerBet, haveCoin[player])
             nextPlayerAdd()
-
         }
     }
 
     private fun winnerButton(bool: Boolean) {
         if (bool) {
             val playCount = playerState.count { it.equals("play") }
-            player1buttons[0].isEnabled = true
-            player2buttons[0].isEnabled = true
-            player3buttons[0].isEnabled = true
-            player4buttons[0].isEnabled = true
+            Log.d("どのどの", "" + (playerState.count { it.equals("fold") }))
+            if ((playerState.count { it.equals("fold") }) == playerNum) {
+                resetTable()
+            }
+            if (!playerState[0].equals("fold")) {
+                player1buttons[0].isEnabled = true
+            }
+            if (!playerState[1].equals("fold")) {
+                player2buttons[0].isEnabled = true
+            }
+            if (!playerState[2].equals("fold")) {
+                player3buttons[0].isEnabled = true
+            }
+            if (!playerState[3].equals("fold")) {
+                player4buttons[0].isEnabled = true
+            }
+            player1buttons[0].text = getString(R.string.winner)
+            player2buttons[0].text = getString(R.string.winner)
+            player3buttons[0].text = getString(R.string.winner)
+            player4buttons[0].text = getString(R.string.winner)
 
             player1buttons[0].setOnClickListener {
                 haveCoin[0] += betCoin * playCount
@@ -233,6 +247,11 @@ class BetModeActivity : AppCompatActivity() {
             player3buttons[0].isEnabled = false
             player4buttons[0].isEnabled = false
 
+            player1buttons[0].text = getString(R.string.call)
+            player2buttons[0].text = getString(R.string.call)
+            player3buttons[0].text = getString(R.string.call)
+            player4buttons[0].text = getString(R.string.call)
+
             setBetButtons(player1buttons, 0)
             if (playerNum > 2) {
                 setBetButtons(player2buttons, 2)
@@ -247,10 +266,11 @@ class BetModeActivity : AppCompatActivity() {
     }
 
     private fun nextPlayerAdd() {
+        setStateColors()
         nextPlayer = (nextPlayer + 1) % playerNum
         Log.d("どのプレイヤーのターンか", "プレイヤー$nextPlayer")
         if (nextPlayer == lastRaisePlayer) {
-            showDoun()
+            showDown()
         } else {
             if (playerState[nextPlayer].equals("play")) {
                 setTable(nextPlayer)
@@ -262,7 +282,9 @@ class BetModeActivity : AppCompatActivity() {
 
     private fun resetTable() {
         betCoin = baseBet
-        playerState = baseState
+        for (i in 0 until playerNum) {
+            playerState[i] = "play"
+        }
         for (i in 0 until 4) {
             haveCoin[i] -= baseBet
             playerBetCoins[i] = baseBet
@@ -278,12 +300,24 @@ class BetModeActivity : AppCompatActivity() {
         Log.d("どの", "$lastRaisePlayer")
     }
 
-    private fun showDoun() {
+    private fun showDown() {
         setEnabledLists(player1buttons, false)
         setEnabledLists(player2buttons, false)
         setEnabledLists(player3buttons, false)
         setEnabledLists(player4buttons, false)
         winnerButton(true)
 
+    }
+
+    private fun setStateColors() {
+        for (i in 0 until 4) {
+            if (playerState[i].equals("fold")) {
+                textViews[i].setTextColor(resources.getColor(R.color.grayColor))
+            } else if (lastRaisePlayer == i) {
+                textViews[i].setTextColor(resources.getColor(R.color.redColor))
+            } else {
+                textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
+            }
+        }
     }
 }
