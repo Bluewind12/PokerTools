@@ -36,7 +36,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="18dp"
-            android:id="@+id/betCoinButton1"
+            android:id="@+id/betCoinText1"
             app:layout_constraintStart_toStartOf="@+id/callButton1"
             app:layout_constraintEnd_toEndOf="@+id/callButton1"
             android:layout_marginBottom="64dp" app:layout_constraintBottom_toBottomOf="parent"/>
@@ -70,7 +70,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/betCoinButton2"
+            android:id="@+id/betCoinText2"
             android:rotation="90" app:layout_constraintBottom_toBottomOf="@+id/callButton2"
             app:layout_constraintTop_toTopOf="@+id/callButton2"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="64dp"
@@ -105,7 +105,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/betCoinButton3"
+            android:id="@+id/betCoinText3"
             app:layout_constraintStart_toStartOf="@+id/callButton3"
             app:layout_constraintEnd_toEndOf="@+id/callButton3"
             android:rotation="180" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="64dp"/>
@@ -139,7 +139,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/betCoinButton4"
+            android:id="@+id/betCoinText4"
             app:layout_constraintBottom_toBottomOf="@+id/callButton4"
             app:layout_constraintTop_toTopOf="@+id/callButton4"
             android:rotation="270" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="64dp"

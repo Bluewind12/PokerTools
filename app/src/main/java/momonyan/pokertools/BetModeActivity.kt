@@ -25,6 +25,7 @@ class BetModeActivity : AppCompatActivity() {
     private var betCoin = 0
     private var lastRaisePlayer = 0
     private var playerState: MutableList<String> = mutableListOf("play", "play", "play", "play")
+    private var baseState: MutableList<String> = mutableListOf("play", "play", "play", "play")
     private var haveCoin: MutableList<Int> = mutableListOf(0, 0, 0, 0)
     private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)
     private var baseBet = 0
@@ -41,23 +42,22 @@ class BetModeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bet_mode_layout)
-        //バツボタンの設定、戻るボタンの際の確認
-        endButton.setOnClickListener {
-            backAlertDialogCreate()
-        }
-        endButton2.setOnClickListener {
-            backAlertDialogCreate()
-        }
-
-
-        player1buttons = listOf(callButton1, foldButton1, raiseButton1)
-        player2buttons = listOf(callButton3, foldButton3, raiseButton3)
-        player3buttons = listOf(callButton2, foldButton2, raiseButton2)
-        player4buttons = listOf(callButton4, foldButton4, raiseButton4)
-        textViews = listOf(betCoinButton1, betCoinButton3, betCoinButton2, betCoinButton4)
 
         playerNum = intent.getIntExtra("Player", 1)
         baseBet = intent.getIntExtra("BaseBet", 1)
+        Log.d("PlayerNum", "$playerNum")
+
+        player1buttons = listOf(callButton1, foldButton1, raiseButton1)
+        if (playerNum <= 2) {
+            player3buttons = listOf(callButton2, foldButton2, raiseButton2)
+            player2buttons = listOf(callButton3, foldButton3, raiseButton3)
+            textViews = listOf(betCoinText1, betCoinText3, betCoinText2, betCoinText4)
+        } else {
+            player3buttons = listOf(callButton2, foldButton2, raiseButton2)
+            player2buttons = listOf(callButton3, foldButton3, raiseButton3)
+            textViews = listOf(betCoinText1, betCoinText2, betCoinText3, betCoinText4)
+        }
+        player4buttons = listOf(callButton4, foldButton4, raiseButton4)
         lastRaisePlayer = 0
         Log.d("どの", "$lastRaisePlayer")
         betCoin = baseBet
@@ -68,6 +68,7 @@ class BetModeActivity : AppCompatActivity() {
             }
             textViews[3].visibility = View.INVISIBLE
             playerState[3] = "nothing"
+
         }
         if (playerNum <= 2) {
             player3buttons.forEach {
@@ -85,6 +86,7 @@ class BetModeActivity : AppCompatActivity() {
             betCoinsText2.visibility = View.INVISIBLE
             endButton.visibility = View.INVISIBLE
         }
+        baseState = playerState
         haveCoin[0] = intent.getIntExtra("Coin", 100) - baseBet
         haveCoin[1] = intent.getIntExtra("Coin2", 100) - baseBet
         haveCoin[2] = intent.getIntExtra("Coin3", 100) - baseBet
@@ -97,10 +99,24 @@ class BetModeActivity : AppCompatActivity() {
         betCoinsText2.text = getString(R.string.nowBet, baseBet)
 
         setBetButtons(player1buttons, 0)
-        setBetButtons(player2buttons, 1)
-        setBetButtons(player3buttons, 2)
+        if (playerNum <= 2) {
+            setBetButtons(player2buttons, 1)
+            setBetButtons(player3buttons, 2)
+        } else {
+            setBetButtons(player2buttons, 2)
+            setBetButtons(player3buttons, 1)
+        }
         setBetButtons(player4buttons, 3)
         setTable(0)
+
+
+        //バツボタンの設定、戻るボタンの際の確認
+        endButton.setOnClickListener {
+            backAlertDialogCreate()
+        }
+        endButton2.setOnClickListener {
+            backAlertDialogCreate()
+        }
     }
 
     private fun backAlertDialogCreate() {
@@ -120,16 +136,33 @@ class BetModeActivity : AppCompatActivity() {
         } else {
             setEnabledLists(player1buttons, true)
         }
-        if (spone != 1) {
-            setEnabledLists(player3buttons, false)
+
+        if (playerNum <= 2) {
+            if (spone != 1) {
+                setEnabledLists(player2buttons, false)
+            } else {
+                setEnabledLists(player2buttons, true)
+            }
+
+            if (spone != 2) {
+                setEnabledLists(player3buttons, false)
+            } else {
+                setEnabledLists(player3buttons, true)
+            }
         } else {
-            setEnabledLists(player3buttons, true)
+            if (spone != 2) {
+                setEnabledLists(player2buttons, false)
+            } else {
+                setEnabledLists(player2buttons, true)
+            }
+
+            if (spone != 1) {
+                setEnabledLists(player3buttons, false)
+            } else {
+                setEnabledLists(player3buttons, true)
+            }
         }
-        if (spone != 2) {
-            setEnabledLists(player2buttons, false)
-        } else {
-            setEnabledLists(player2buttons, true)
-        }
+
         if (spone != 3) {
             setEnabledLists(player4buttons, false)
         } else {
@@ -161,11 +194,11 @@ class BetModeActivity : AppCompatActivity() {
             betCoin += 10
             haveCoin[player] -= 10
             lastRaisePlayer = player
+            Log.d("どの", "$lastRaisePlayer")
             betCoinsText.text = getString(R.string.nowBet, betCoin)
             betCoinsText2.text = getString(R.string.nowBet, betCoin)
             textViews[player].text = getString(R.string.playerBet, haveCoin[player])
             nextPlayerAdd()
-            Log.d("どの", "$lastRaisePlayer")
 
         }
     }
@@ -199,22 +232,17 @@ class BetModeActivity : AppCompatActivity() {
             player2buttons[0].isEnabled = false
             player3buttons[0].isEnabled = false
             player4buttons[0].isEnabled = false
-            player1buttons[0].setOnClickListener {
-                haveCoin[0] -= (betCoin - playerBetCoins[0])
-                nextPlayerAdd()
+
+            setBetButtons(player1buttons, 0)
+            if (playerNum > 2) {
+                setBetButtons(player2buttons, 2)
+                setBetButtons(player3buttons, 1)
+            } else {
+                setBetButtons(player2buttons, 1)
+                setBetButtons(player3buttons, 2)
             }
-            player3buttons[0].setOnClickListener {
-                haveCoin[1] -= (betCoin - playerBetCoins[1])
-                nextPlayerAdd()
-            }
-            player2buttons[0].setOnClickListener {
-                haveCoin[2] -= (betCoin - playerBetCoins[2])
-                nextPlayerAdd()
-            }
-            player4buttons[0].setOnClickListener {
-                haveCoin[3] -= (betCoin - playerBetCoins[3])
-                nextPlayerAdd()
-            }
+            setBetButtons(player4buttons, 3)
+
         }
     }
 
@@ -234,8 +262,8 @@ class BetModeActivity : AppCompatActivity() {
 
     private fun resetTable() {
         betCoin = baseBet
+        playerState = baseState
         for (i in 0 until 4) {
-            playerState[i] = "play"
             haveCoin[i] -= baseBet
             playerBetCoins[i] = baseBet
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
@@ -246,12 +274,7 @@ class BetModeActivity : AppCompatActivity() {
         val rand = Random().nextInt(playerNum)
         lastRaisePlayer = rand
         nextPlayer = rand
-        when (rand) {
-            0 -> setEnabledLists(player1buttons, true)
-            1 -> setEnabledLists(player2buttons, true)
-            2 -> setEnabledLists(player3buttons, true)
-            3 -> setEnabledLists(player4buttons, true)
-        }
+        setTable(rand)
         Log.d("どの", "$lastRaisePlayer")
     }
 

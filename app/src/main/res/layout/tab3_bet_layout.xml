@@ -11,12 +11,16 @@
         <Button
                 android:text="@string/start"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/betModeStartButton"
                 android:background="@drawable/color_menu_bar_background"
-                app:layout_constraintHorizontal_bias="0.498" android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/baseBetCoinEditText"/>
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/textView" android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/betPeopleSpinner"
+                app:layout_constraintStart_toEndOf="@+id/betPeopleSpinner" android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp" app:layout_constraintHorizontal_bias="0.75"/>
         <TextView
                 android:text="@string/people"
                 android:layout_width="wrap_content"
