@@ -3,7 +3,6 @@ package momonyan.pokertools
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
@@ -13,22 +12,25 @@ import java.util.*
 
 class BetModeActivity : AppCompatActivity() {
     //プレイヤー関連
-    //コール、フォールド、レイズ
-    private lateinit var player1buttons: List<Button>
-    private lateinit var player2buttons: List<Button>
-    private lateinit var player3buttons: List<Button>
-    private lateinit var player4buttons: List<Button>
+    private lateinit var player1buttons: List<Button>   //プレイヤー１用
+    private lateinit var player2buttons: List<Button>   //プレイヤー２用
+    private lateinit var player3buttons: List<Button>   //プレイヤー３用
+    private lateinit var player4buttons: List<Button>   //プレイヤー４用
     //テキスト
-    private lateinit var textViews: List<TextView>
-    private var playerNum: Int = 0
-    private var nextPlayer: Int = 0
-    private var betCoin = 0
-    private var lastRaisePlayer = 0
-    private var playerState: MutableList<String> = mutableListOf("play", "play", "play", "play")
-    private var haveCoin: MutableList<Int> = mutableListOf(0, 0, 0, 0)
-    private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)
-    private var baseBet = 0
+    private lateinit var textViews: List<TextView>  //手元の所持金表示用
 
+    private var playerNum: Int = 0  //プレイ人数
+    private var nextPlayer: Int = 0 //手番の判別用
+    private var betCoin = 0 //現在の掛け金
+    private var lastRaisePlayer = 0 //最高レイズを行なってるプレイヤー
+    private var playerState: MutableList<String> = mutableListOf("play", "play", "play", "play")    //現在のプレイヤーステート
+    private var haveCoin: MutableList<Int> = mutableListOf(0, 0, 0, 0)   //所持コイン数
+    private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)    //bet額
+    private var baseBet = 0 //場代
+
+    /**
+     * 戻るボタンを押した時にダイアログを出す処理
+     */
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             // 戻るボタンの処理
@@ -42,10 +44,14 @@ class BetModeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bet_mode_layout)
 
+        //前のIntentからのデータ引き継ぎ
         playerNum = intent.getIntExtra("Player", 1)
         baseBet = intent.getIntExtra("BaseBet", 1)
-        Log.d("PlayerNum", "$playerNum")
 
+        /*
+        プレイヤーごとにボタンをList化
+        二人プレイ時に特殊な動作
+        */
         player1buttons = listOf(callButton1, foldButton1, raiseButton1)
         if (playerNum <= 2) {
             player3buttons = listOf(callButton2, foldButton2, raiseButton2)
@@ -57,17 +63,17 @@ class BetModeActivity : AppCompatActivity() {
             textViews = listOf(betCoinText1, betCoinText2, betCoinText3, betCoinText4)
         }
         player4buttons = listOf(callButton4, foldButton4, raiseButton4)
-        lastRaisePlayer = 0
-        Log.d("どの", "$lastRaisePlayer")
+
+        //現在の掛けコイン数のセット
         betCoin = baseBet
 
+        //プレイ人数に王するように表示の切り替え
         if (playerNum <= 3) {
             player4buttons.forEach {
                 it.visibility = View.INVISIBLE
             }
             textViews[3].visibility = View.INVISIBLE
             playerState[3] = "nothing"
-
         }
         if (playerNum <= 2) {
             player3buttons.forEach {
@@ -85,17 +91,23 @@ class BetModeActivity : AppCompatActivity() {
             betCoinsText2.visibility = View.INVISIBLE
             endButton.visibility = View.INVISIBLE
         }
+        //所持コインのセット
         haveCoin[0] = intent.getIntExtra("Coin", 100) - baseBet
         haveCoin[1] = intent.getIntExtra("Coin2", 100) - baseBet
         haveCoin[2] = intent.getIntExtra("Coin3", 100) - baseBet
         haveCoin[3] = intent.getIntExtra("Coin4", 100) - baseBet
+
+        //各プレイヤーの掛けコインの初期セット、表示
         for (i in 0 until 4) {
             playerBetCoins[i] = baseBet
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
         }
+
+        //中央に表示
         betCoinsText.text = getString(R.string.nowBet, baseBet)
         betCoinsText2.text = getString(R.string.nowBet, baseBet)
 
+        //プレイヤーの対応するようにボタンに動作セット
         setBetButtons(player1buttons, 0)
         if (playerNum <= 2) {
             setBetButtons(player2buttons, 1)
@@ -105,6 +117,8 @@ class BetModeActivity : AppCompatActivity() {
             setBetButtons(player3buttons, 1)
         }
         setBetButtons(player4buttons, 3)
+
+        //動作開始
         setTable(0)
 
 
@@ -117,17 +131,24 @@ class BetModeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 終了時の動作
+     */
     private fun backAlertDialogCreate() {
         AlertDialog.Builder(this)
             .setTitle("終了します")
             .setMessage("終了してもよろしいですか?")
-            .setPositiveButton("はい") { dialog, which ->
+            .setPositiveButton("はい") { _, _ ->
                 finish()
             }
             .setNegativeButton("いいえ", null)
             .show()
     }
 
+    /**
+     * 手番のプレイヤーを動かせるようにする
+     * @param spone:手番プレイヤー
+     */
     private fun setTable(spone: Int) {
         if (spone != 0) {
             setEnabledLists(player1buttons, false)
@@ -168,12 +189,18 @@ class BetModeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * ButtonのListに対して対応するBool値にEnabledを設定する
+     */
     private fun setEnabledLists(list: List<Button>, bool: Boolean) {
         list.forEach {
             it.isEnabled = bool
         }
     }
 
+    /**
+     * ボタンの初期設定
+     */
     private fun setBetButtons(buttons: List<Button>, player: Int) {
         //コール
         buttons[0].setOnClickListener {
@@ -193,7 +220,6 @@ class BetModeActivity : AppCompatActivity() {
             betCoin += 10
             haveCoin[player] -= 10
             lastRaisePlayer = player
-            Log.d("どの", "$lastRaisePlayer")
             betCoinsText.text = getString(R.string.nowBet, betCoin)
             betCoinsText2.text = getString(R.string.nowBet, betCoin)
             textViews[player].text = getString(R.string.playerBet, haveCoin[player])
@@ -201,23 +227,26 @@ class BetModeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * ショーダウン時のボタンの設定の変更を行う
+     * @param bool true:ショーダウン時の動作用,false:ベット時の動作
+     */
     private fun winnerButton(bool: Boolean) {
         if (bool) {
-            val playCount = playerState.count { it.equals("play") }
-            Log.d("どのどの", "" + (playerState.count { it.equals("fold") }))
-            if ((playerState.count { it.equals("fold") }) == playerNum) {
+            val playCount = playerState.count { it == "play" }
+            if ((playerState.count { it == "fold" }) == playerNum) {
                 resetTable()
             }
-            if (!playerState[0].equals("fold")) {
+            if (playerState[0] != "fold") {
                 player1buttons[0].isEnabled = true
             }
-            if (!playerState[1].equals("fold")) {
+            if (playerState[1] != "fold") {
                 player2buttons[0].isEnabled = true
             }
-            if (!playerState[2].equals("fold")) {
+            if (playerState[2] != "fold") {
                 player3buttons[0].isEnabled = true
             }
-            if (!playerState[3].equals("fold")) {
+            if (playerState[3] != "fold") {
                 player4buttons[0].isEnabled = true
             }
             player1buttons[0].text = getString(R.string.winner)
@@ -265,14 +294,16 @@ class BetModeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 手番を次のプレイヤーに渡す動作を行う
+     */
     private fun nextPlayerAdd() {
         setStateColors()
         nextPlayer = (nextPlayer + 1) % playerNum
-        Log.d("どのプレイヤーのターンか", "プレイヤー$nextPlayer")
         if (nextPlayer == lastRaisePlayer) {
             showDown()
         } else {
-            if (playerState[nextPlayer].equals("play")) {
+            if (playerState[nextPlayer] == "play") {
                 setTable(nextPlayer)
             } else {
                 nextPlayerAdd()
@@ -280,6 +311,9 @@ class BetModeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 場の初期化を行う
+     */
     private fun resetTable() {
         betCoin = baseBet
         for (i in 0 until playerNum) {
@@ -297,9 +331,11 @@ class BetModeActivity : AppCompatActivity() {
         lastRaisePlayer = rand
         nextPlayer = rand
         setTable(rand)
-        Log.d("どの", "$lastRaisePlayer")
     }
 
+    /**
+     * ショーダウンの際に行うことを簡易的に行う
+     */
     private fun showDown() {
         setEnabledLists(player1buttons, false)
         setEnabledLists(player2buttons, false)
@@ -309,14 +345,15 @@ class BetModeActivity : AppCompatActivity() {
 
     }
 
+    /**
+     *　現在のプレイヤーのステートと最高レイズ者を取得しテキストの色の変更を行う
+     */
     private fun setStateColors() {
         for (i in 0 until 4) {
-            if (playerState[i].equals("fold")) {
-                textViews[i].setTextColor(resources.getColor(R.color.grayColor))
-            } else if (lastRaisePlayer == i) {
-                textViews[i].setTextColor(resources.getColor(R.color.redColor))
-            } else {
-                textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
+            when {
+                playerState[i].equals("fold") -> textViews[i].setTextColor(resources.getColor(R.color.grayColor))
+                lastRaisePlayer == i -> textViews[i].setTextColor(resources.getColor(R.color.redColor))
+                else -> textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
             }
         }
     }
