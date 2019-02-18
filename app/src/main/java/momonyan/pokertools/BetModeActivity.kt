@@ -17,6 +17,8 @@ class BetModeActivity : AppCompatActivity() {
     private lateinit var player4buttons: List<Button>
     //テキスト
     private lateinit var textViews: List<TextView>
+    private var playerNum: Int = 0
+    private var nextPlayer: Int = 0
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -46,7 +48,7 @@ class BetModeActivity : AppCompatActivity() {
         player4buttons = listOf(callButton4, foldButton4, raiseButton4)
         textViews = listOf(betCoinButton1, betCoinButton3, betCoinButton2, betCoinButton4)
 
-        val playerNum = intent.getIntExtra("Player", 1)
+        playerNum = intent.getIntExtra("Player", 1)
         val baseBet = intent.getIntExtra("BaseBet", 1)
         val haveCoin = mutableListOf(0, 0, 0, 0)
 
@@ -79,8 +81,14 @@ class BetModeActivity : AppCompatActivity() {
         for (i in 0 until 4) {
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
         }
-        betCoinsText.text = "現在の掛けコイン：$baseBet"
-        betCoinsText2.text = "現在の掛けコイン：$baseBet"
+        betCoinsText.text = getString(R.string.nowBet, baseBet)
+        betCoinsText2.text = getString(R.string.nowBet, baseBet)
+
+        setBetButtons(player1buttons)
+        setBetButtons(player2buttons)
+        setBetButtons(player3buttons)
+        setBetButtons(player4buttons)
+        setTable(0)
     }
 
     private fun backAlertDialogCreate() {
@@ -92,5 +100,50 @@ class BetModeActivity : AppCompatActivity() {
             }
             .setNegativeButton("いいえ", null)
             .show()
+    }
+
+    private fun setTable(spone: Int) {
+        if (spone != 0) {
+            setEnabledLists(player1buttons, false)
+        } else {
+            setEnabledLists(player1buttons, true)
+        }
+        if (spone != 1) {
+            setEnabledLists(player2buttons, false)
+        } else {
+            setEnabledLists(player2buttons, true)
+        }
+        if (spone != 2) {
+            setEnabledLists(player3buttons, false)
+        } else {
+            setEnabledLists(player3buttons, true)
+
+        }
+        if (spone != 3) {
+            setEnabledLists(player4buttons, false)
+        } else {
+            setEnabledLists(player4buttons, true)
+        }
+    }
+
+    private fun setEnabledLists(list: List<Button>, bool: Boolean) {
+        list.forEach {
+            it.isEnabled = bool
+        }
+    }
+
+    private fun setBetButtons(buttons: List<Button>) {
+        buttons[0].setOnClickListener {
+            nextPlayer = (nextPlayer + 1) % playerNum
+            setTable(nextPlayer)
+        }
+        buttons[1].setOnClickListener {
+            nextPlayer = (nextPlayer + 1) % playerNum
+            setTable(nextPlayer)
+        }
+        buttons[2].setOnClickListener {
+            nextPlayer = (nextPlayer + 1) % playerNum
+            setTable(nextPlayer)
+        }
     }
 }

@@ -54,7 +54,7 @@
         <item>4人</item>
     </string-array>
     <string name="newCoin">初期コイン数</string>
-    <string name="betCoin">基本掛け金</string>
+    <string name="betCoin">基本掛けコイン</string>
     <string name="start">スタート</string>
 
     <!-- ベット画面 -->
@@ -62,4 +62,5 @@
     <string name="raise">レイズ</string>
     <string name="fold">フォールド</string>
     <string name="playerBet">所持%d</string>
+    <string name="nowBet">現在の掛けコイン%d</string>
 </resources>
