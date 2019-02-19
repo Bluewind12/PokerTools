@@ -2,21 +2,21 @@
 <resources>
 
     <!-- Ad -->
-    <!--<string name="Ad50Key">1844079b6cadf83fd4497e302815b9c35bbef13f</string>-->
-    <!--<string name="AdMovieKey">6ccddf012bafd410a974b2fc6605096e83bccc54</string>-->
-    <!--<string name="AdPopKey">dbb4913a821cbf5604d31e3ca36e575148dc0cfa</string>-->
+    <string name="Ad50Key">1844079b6cadf83fd4497e302815b9c35bbef13f</string>
+    <string name="AdMovieKey">6ccddf012bafd410a974b2fc6605096e83bccc54</string>
+    <string name="AdPopKey">dbb4913a821cbf5604d31e3ca36e575148dc0cfa</string>
 
-    <!--<integer name="Ad50ID">940865</integer>-->
-    <!--<integer name="AdMovie">940866</integer>-->
-    <!--<integer name="AdPopup">940867</integer>-->
+    <integer name="Ad50ID">940865</integer>
+    <integer name="AdMovie">940866</integer>
+    <integer name="AdPopup">940867</integer>
 
     <!-- AD TEST -->
-    <string name="Ad50Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>
-    <string name="AdMovieKey">e9527a2ac8d1f39a667dfe0f7c169513b090ad44</string>
-    <string name="AdPopKey">8c278673ac6f676dae60a1f56d16dad122e23516</string>
+    <!--<string name="Ad50Key">c5cb8bc474345961c6e7a9778c947957ed8e1e4f</string>-->
+    <!--<string name="AdMovieKey">e9527a2ac8d1f39a667dfe0f7c169513b090ad44</string>-->
+    <!--<string name="AdPopKey">8c278673ac6f676dae60a1f56d16dad122e23516</string>-->
 
-    <integer name="Ad50ID">3174</integer>
-    <integer name="AdMovie">802559</integer>
-    <integer name="AdPopup">213206</integer>
+    <!--<integer name="Ad50ID">3174</integer>-->
+    <!--<integer name="AdMovie">802559</integer>-->
+    <!--<integer name="AdPopup">213206</integer>-->
 
 </resources>
