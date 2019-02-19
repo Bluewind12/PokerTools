@@ -3,7 +3,6 @@ package momonyan.pokertools
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
@@ -340,7 +339,6 @@ class BetModeActivity : AppCompatActivity() {
     private fun nextPlayerAdd() {
         setStateColors()
         count++
-        Log.d("CheckTag", "C:" + count + "P:" + playerNum * 2)
         nextPlayer = (nextPlayer + 1) % playerNum
         if (count == playerNum * 2) {
             showDown()
@@ -377,9 +375,7 @@ class BetModeActivity : AppCompatActivity() {
         setTable(rand)
 
         val adRand = Random().nextInt(10)
-        Log.d("AD", "" + adRand)
         if (adRand >= 5) {
-            Log.d("AD", "START")
             adStart()
         }
     }
@@ -412,7 +408,6 @@ class BetModeActivity : AppCompatActivity() {
 
     private fun adStart() {
         if (nendAdInterstitialVideo.isLoaded) {
-            Log.d("AD", "SHOW_AD")
             nendAdInterstitialVideo.showAd(this)
         }
     }

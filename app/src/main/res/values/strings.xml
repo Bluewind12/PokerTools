@@ -109,4 +109,7 @@
     <string name="nowBet">現在の掛けコイン%d</string>
     <string name="winner">勝った</string>
 
+    <!-- URL -->
+    <string name="privacy">https://www.gensounosakura.work/</string>
+    <string name="enquete">https://www.gensounosakura.work/pages/2473622/page_201812262034</string>
 </resources>

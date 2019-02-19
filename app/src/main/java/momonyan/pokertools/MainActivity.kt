@@ -1,10 +1,16 @@
 package momonyan.pokertools
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import net.nend.android.NendAdInterstitial
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,5 +42,43 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu1 -> {
+                AlertDialog.Builder(this)
+                    .setTitle("Webページを開きます")
+                    .setMessage("プライバシーポリシーのページを開きます\nよろしいですか？")
+                    .setPositiveButton("OK") { _, _ ->
+                        val uri = Uri.parse(getString(R.string.privacy))
+                        val i = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(i)
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
+                return true
+            }
+            R.id.menu2 -> {
+                AlertDialog.Builder(this)
+                    .setTitle("Webページを開きます")
+                    .setMessage("プライバシーポリシーのページを開きます\nよろしいですか？")
+                    .setPositiveButton("OK") { _, _ ->
+                        val uri = Uri.parse(getString(R.string.enquete))
+                        val i = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(i)
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
