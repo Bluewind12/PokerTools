@@ -324,6 +324,7 @@ class BetModeActivity : AppCompatActivity() {
             playerBetCoins[i] = baseBet
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
         }
+        showDownImageView.setImageResource(R.drawable.picture_non)
         betCoinsText.text = getString(R.string.nowBet, baseBet)
         betCoinsText2.text = getString(R.string.nowBet, baseBet)
         winnerButton(false)
@@ -341,6 +342,7 @@ class BetModeActivity : AppCompatActivity() {
         setEnabledLists(player2buttons, false)
         setEnabledLists(player3buttons, false)
         setEnabledLists(player4buttons, false)
+        showDownImageView.setImageResource(R.drawable.picture_showdoun)
         winnerButton(true)
 
     }
