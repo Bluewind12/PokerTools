@@ -222,7 +222,12 @@ class BetModeActivity : AppCompatActivity() {
             dialog.setOnOkButtonClickListener(View.OnClickListener {
                 //ダイアログから値を取得して、output用のTextViewに表示
                 val raize: Long = dialog.inputValue!!
-                if (raize >= 1) {
+                if (raize > haveCoin[player]) {
+                    AlertDialog.Builder(this)
+                        .setTitle("エラー")
+                        .setMessage("所持コインをオーバーしています")
+                        .setPositiveButton("OK", null)
+                } else if (raize >= 1) {
                     playerBetCoins[player] += raize.toInt()
                     betCoin += raize.toInt()
                     haveCoin[player] -= raize.toInt()

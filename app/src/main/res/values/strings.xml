@@ -44,6 +44,16 @@
         <item>役が存在しない状態\n別名「ブタ」</item>
     </string-array>
 
+    <!-- 単語一覧 -->
+    <string-array name="wordListJp">
+
+    </string-array>
+    <string-array name="wordListEng">
+
+    </string-array>
+    <string-array name="wordListDescription">
+
+    </string-array>
 
     <!--レイアウト内で使用-->
     <string name="people">人数</string>
