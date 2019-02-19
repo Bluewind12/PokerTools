@@ -108,4 +108,5 @@
     <string name="playerBet">所持%d</string>
     <string name="nowBet">現在の掛けコイン%d</string>
     <string name="winner">勝った</string>
+
 </resources>

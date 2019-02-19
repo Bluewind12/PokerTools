@@ -9,7 +9,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.bet_mode_layout.*
+import net.nend.android.NendAdInterstitialVideo
 import java.util.*
+
 
 class BetModeActivity : AppCompatActivity() {
     //プレイヤー関連
@@ -30,6 +32,8 @@ class BetModeActivity : AppCompatActivity() {
     private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)    //bet額
     private var baseBet = 0 //場代
 
+    private lateinit var nendAdInterstitialVideo: NendAdInterstitialVideo
+
     /**
      * 戻るボタンを押した時にダイアログを出す処理
      */
@@ -45,6 +49,11 @@ class BetModeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bet_mode_layout)
+
+        //広告
+        nendAdInterstitialVideo =
+            NendAdInterstitialVideo(this, resources.getInteger(R.integer.AdMovie), getString(R.string.AdMovieKey))
+        nendAdInterstitialVideo.loadAd()
 
         //前のIntentからのデータ引き継ぎ
         playerNum = intent.getIntExtra("Player", 1)
@@ -98,6 +107,8 @@ class BetModeActivity : AppCompatActivity() {
         haveCoin[1] = intent.getIntExtra("Coin2", 100) - baseBet
         haveCoin[2] = intent.getIntExtra("Coin3", 100) - baseBet
         haveCoin[3] = intent.getIntExtra("Coin4", 100) - baseBet
+
+        showDownImageView.visibility = View.INVISIBLE
 
         //各プレイヤーの掛けコインの初期セット、表示
         for (i in 0 until 4) {
@@ -355,7 +366,7 @@ class BetModeActivity : AppCompatActivity() {
             playerBetCoins[i] = baseBet
             textViews[i].text = getString(R.string.playerBet, haveCoin[i])
         }
-        showDownImageView.setImageResource(R.drawable.picture_non)
+        showDownImageView.visibility = View.INVISIBLE
         betCoinsText.text = getString(R.string.nowBet, baseBet)
         betCoinsText2.text = getString(R.string.nowBet, baseBet)
         winnerButton(false)
@@ -364,6 +375,13 @@ class BetModeActivity : AppCompatActivity() {
         dealer = rand
         nextPlayer = rand
         setTable(rand)
+
+        val adRand = Random().nextInt(10)
+        Log.d("AD", "" + adRand)
+        if (adRand >= 5) {
+            Log.d("AD", "START")
+            adStart()
+        }
     }
 
     /**
@@ -374,7 +392,7 @@ class BetModeActivity : AppCompatActivity() {
         setEnabledLists(player2buttons, false)
         setEnabledLists(player3buttons, false)
         setEnabledLists(player4buttons, false)
-        showDownImageView.setImageResource(R.drawable.picture_showdoun)
+        showDownImageView.visibility = View.VISIBLE
         winnerButton(true)
 
     }
@@ -390,5 +408,17 @@ class BetModeActivity : AppCompatActivity() {
                 else -> textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
             }
         }
+    }
+
+    private fun adStart() {
+        if (nendAdInterstitialVideo.isLoaded) {
+            Log.d("AD", "SHOW_AD")
+            nendAdInterstitialVideo.showAd(this)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        nendAdInterstitialVideo.releaseAd()
     }
 }
