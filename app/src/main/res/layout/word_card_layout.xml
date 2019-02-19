@@ -17,17 +17,19 @@
             android:layout_height="match_parent">
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/wordEngText" android:layout_weight="1"/>
+                android:layout_height="wrap_content" android:id="@+id/wordEngText" android:layout_weight="1"
+                android:padding="8dp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/wordJpText" android:layout_weight="1"
-                android:textSize="24sp"/>
+                android:textSize="24sp" android:padding="8dp"/>
         <Space
                 android:layout_width="match_parent"
-                android:layout_height="10sp" android:layout_weight="1"/>
+                android:layout_height="10sp" android:layout_weight="1" android:padding="8dp"/>
         <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/wordDesText" android:layout_weight="1"/>
+                android:layout_height="wrap_content" android:id="@+id/wordDesText" android:layout_weight="1"
+                android:padding="8dp"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

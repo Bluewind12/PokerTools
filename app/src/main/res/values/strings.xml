@@ -46,13 +46,46 @@
 
     <!-- 単語一覧 -->
     <string-array name="wordListJp">
-
+        <item>オールイン</item>
+        <item>コール</item>
+        <item>スーツ</item>
+        <item>チェック</item>
+        <item>ティルト</item>
+        <item>ハンド</item>
+        <item>フォールド</item>
+        <item>ブラフ</item>
+        <item>ベット</item>
+        <item>ポット</item>
+        <item>ランク</item>
+        <item>レイズ</item>
     </string-array>
     <string-array name="wordListEng">
-
+        <item>All in</item>
+        <item>call</item>
+        <item>Suit</item>
+        <item>Check</item>
+        <item>Tilt</item>
+        <item>Hand</item>
+        <item>Fold</item>
+        <item>Bluff</item>
+        <item>Bet</item>
+        <item>Pot</item>
+        <item>rank</item>
+        <item>Raise</item>
     </string-array>
     <string-array name="wordListDescription">
-
+        <item>持っているコインを全て駆けること\n別名「全賭け」</item>
+        <item>前のプレイヤーと同額賭けること</item>
+        <item>カードの種類（マーク)のこと\n強さ：スペード＞ハート＞ダイヤ＞クラブの順</item>
+        <item>賭け金を出さず次の人に回すこと</item>
+        <item>勝ちが確定したような状況で、相手に逆転されるなどして\n頭に血が上った状態になること</item>
+        <item>手札のこと、場のことを指す場合もある</item>
+        <item>賭けずに勝負を降りること\n別名「ドロップ」</item>
+        <item>自分のハンドが弱くても、強そうに見せるプレイのこと\nハッタリ</item>
+        <item>賭けること</item>
+        <item>場全体の賭けコインの合計</item>
+        <item>カードの数値のこと\n強さ：Ａ＞Ｋ＞Ｑ＞Ｊ＞10＞９＞８＞７＞６＞５＞４＞３＞２の順</item>
+        <item>掛け金を増やすこと</item>
     </string-array>
 
     <!--レイアウト内で使用-->
@@ -67,7 +100,6 @@
     <string name="start">スタート</string>
     <string name="newCoinInfo">最初に持っているコイン数</string>
     <string name="betCoinInfo">ベースとなる掛けコイン</string>
-
 
     <!-- ベット画面 -->
     <string name="call">コール</string>

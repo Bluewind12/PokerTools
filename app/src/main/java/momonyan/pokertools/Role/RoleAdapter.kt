@@ -19,6 +19,7 @@ class RoleAdapter(private val mValues: ArrayList<RoleDataClass>) : RecyclerView.
         holder.mRoleEng.text = item.eng
         holder.mRoleJp.text = item.jp
         holder.mRoleDescription.text = item.description
+        holder.mRoleImage.setImageResource(item.image)
     }
 
     override fun getItemCount(): Int {

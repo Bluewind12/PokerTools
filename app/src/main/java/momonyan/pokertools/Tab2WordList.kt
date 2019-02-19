@@ -3,7 +3,6 @@ package momonyan.pokertools
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,19 +15,26 @@ class Tab2WordList : Fragment() {
     private lateinit var viewLayout: View
     private lateinit var wordNameList: Array<String>
     private lateinit var wordNameEngList: Array<String>
+    private lateinit var wordNameDescriptionList: Array<String>
 
     private var mDataList: ArrayList<WordDataClass> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewLayout = inflater.inflate(R.layout.tab2_layout, container, false)
         //データセット
-        wordNameList = resources.getStringArray(R.array.roleListJp)
-        wordNameEngList = resources.getStringArray(R.array.roleListEng)
+        wordNameList = resources.getStringArray(R.array.wordListJp)
+        wordNameEngList = resources.getStringArray(R.array.wordListEng)
+        wordNameDescriptionList = resources.getStringArray(R.array.wordListDescription)
         // データ作成
         if (mDataList.isEmpty()) {
-            for (i in 1..20) {
-                mDataList.add(WordDataClass("eng $i", "jp $i", "test $i"))
-                Log.d("TabDataSet", "Tab2:DataNum $i")
+            for (i in 0 until wordNameList.size) {
+                mDataList.add(
+                    WordDataClass(
+                        "${wordNameEngList[i]}",
+                        "${wordNameList[i]}",
+                        "${wordNameDescriptionList[i]}"
+                    )
+                )
             }
         }
         // Adapter作成

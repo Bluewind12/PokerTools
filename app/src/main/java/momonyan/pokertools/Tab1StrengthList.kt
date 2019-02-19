@@ -17,6 +17,7 @@ class Tab1StrengthList : Fragment() {
     private lateinit var roleNameList: Array<String>
     private lateinit var roleNameEngList: Array<String>
     private lateinit var roleDescription: Array<String>
+    private lateinit var roleDrawable: Array<Int>
 
     private var mDataList: ArrayList<RoleDataClass> = ArrayList()
 
@@ -26,10 +27,29 @@ class Tab1StrengthList : Fragment() {
         roleNameList = resources.getStringArray(R.array.roleListJp)
         roleNameEngList = resources.getStringArray(R.array.roleListEng)
         roleDescription = resources.getStringArray(R.array.roleDescription)
+        roleDrawable = arrayOf(
+            R.drawable.role_1_royal,
+            R.drawable.role_2_straight_flash,
+            R.drawable.role_3_four,
+            R.drawable.role_4_full,
+            R.drawable.role_5_flash,
+            R.drawable.role_6_starate,
+            R.drawable.role_7_three,
+            R.drawable.role_8_two,
+            R.drawable.role_9_one,
+            R.drawable.role_10_high
+        )
         // データ作成
         if (mDataList.isEmpty()) {
             for (i in 0 until roleNameEngList.size) {
-                mDataList.add(RoleDataClass("${roleNameEngList[i]}", "${roleNameList[i]}", "説明\n${roleDescription[i]}"))
+                mDataList.add(
+                    RoleDataClass(
+                        "${roleNameEngList[i]}",
+                        "${roleNameList[i]}",
+                        "説明\n${roleDescription[i]}",
+                        roleDrawable[i]
+                    )
+                )
                 Log.d("TabDataSet", "Tab1:DataNum $i")
             }
         }
