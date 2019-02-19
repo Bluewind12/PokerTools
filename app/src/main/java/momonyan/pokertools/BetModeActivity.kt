@@ -23,7 +23,8 @@ class BetModeActivity : AppCompatActivity() {
     private var playerNum: Int = 0  //プレイ人数
     private var nextPlayer: Int = 0 //手番の判別用
     private var betCoin = 0 //現在の掛け金
-    private var lastRaisePlayer = 0 //最高レイズを行なってるプレイヤー
+    private var dealer = 0 //親プレイヤー
+    private var count = 0 //周回数
     private var playerState: MutableList<String> = mutableListOf("play", "play", "play", "play")    //現在のプレイヤーステート
     private var haveCoin: MutableList<Int> = mutableListOf(0, 0, 0, 0)   //所持コイン数
     private var playerBetCoins: MutableList<Int> = mutableListOf(0, 0, 0, 0)    //bet額
@@ -231,7 +232,6 @@ class BetModeActivity : AppCompatActivity() {
                     playerBetCoins[player] += raize.toInt()
                     betCoin += raize.toInt()
                     haveCoin[player] -= raize.toInt()
-                    lastRaisePlayer = player
                     betCoinsText.text = getString(R.string.nowBet, betCoin)
                     betCoinsText2.text = getString(R.string.nowBet, betCoin)
                     textViews[player].text = getString(R.string.playerBet, haveCoin[player])
@@ -252,8 +252,6 @@ class BetModeActivity : AppCompatActivity() {
      */
     private fun winnerButton(bool: Boolean) {
         if (bool) {
-            val playCount = playerState.count { it == "play" }
-            Log.d("CheckTag", "" + playCount)
             if ((playerState.count { it == "fold" }) == playerNum) {
                 resetTable()
             }
@@ -275,30 +273,30 @@ class BetModeActivity : AppCompatActivity() {
             player4buttons[0].text = getString(R.string.winner)
 
             player1buttons[0].setOnClickListener {
-                haveCoin[0] += betCoin * playCount
+                haveCoin[0] += playerBetCoins.sum()
                 resetTable()
             }
             if (playerNum <= 2) {
                 player2buttons[0].setOnClickListener {
-                    haveCoin[1] += betCoin * playCount
+                    haveCoin[1] += playerBetCoins.sum()
                     resetTable()
                 }
                 player3buttons[0].setOnClickListener {
-                    haveCoin[2] += betCoin * playCount
+                    haveCoin[2] += playerBetCoins.sum()
                     resetTable()
                 }
             } else {
                 player3buttons[0].setOnClickListener {
-                    haveCoin[1] += betCoin * playCount
+                    haveCoin[1] += playerBetCoins.sum()
                     resetTable()
                 }
                 player2buttons[0].setOnClickListener {
-                    haveCoin[2] += betCoin * playCount
+                    haveCoin[2] += playerBetCoins.sum()
                     resetTable()
                 }
             }
             player4buttons[0].setOnClickListener {
-                haveCoin[3] += betCoin * playCount
+                haveCoin[3] += playerBetCoins.sum()
                 resetTable()
             }
         } else {
@@ -330,8 +328,10 @@ class BetModeActivity : AppCompatActivity() {
      */
     private fun nextPlayerAdd() {
         setStateColors()
+        count++
+        Log.d("CheckTag", "C:" + count + "P:" + playerNum * 2)
         nextPlayer = (nextPlayer + 1) % playerNum
-        if (nextPlayer == lastRaisePlayer) {
+        if (count == playerNum * 2) {
             showDown()
         } else {
             if (playerState[nextPlayer] == "play") {
@@ -359,8 +359,9 @@ class BetModeActivity : AppCompatActivity() {
         betCoinsText.text = getString(R.string.nowBet, baseBet)
         betCoinsText2.text = getString(R.string.nowBet, baseBet)
         winnerButton(false)
+        count = 0
         val rand = Random().nextInt(playerNum)
-        lastRaisePlayer = rand
+        dealer = rand
         nextPlayer = rand
         setTable(rand)
     }
@@ -385,7 +386,7 @@ class BetModeActivity : AppCompatActivity() {
         for (i in 0 until 4) {
             when {
                 playerState[i] == "fold" -> textViews[i].setTextColor(resources.getColor(R.color.grayColor))
-                lastRaisePlayer == i -> textViews[i].setTextColor(resources.getColor(R.color.redColor))
+                dealer == i -> textViews[i].setTextColor(resources.getColor(R.color.redColor))
                 else -> textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
             }
         }
