@@ -3,6 +3,7 @@ package momonyan.pokertools
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
@@ -216,15 +217,28 @@ class BetModeActivity : AppCompatActivity() {
         }
         //レイズ
         buttons[2].setOnClickListener {
-            playerBetCoins[player] += 10
-            betCoin += 10
-            haveCoin[player] -= 10
-            lastRaisePlayer = player
-            betCoinsText.text = getString(R.string.nowBet, betCoin)
-            betCoinsText2.text = getString(R.string.nowBet, betCoin)
-            textViews[player].text = getString(R.string.playerBet, haveCoin[player])
-            nextPlayerAdd()
+            // ダイアログの表示
+            val dialog = CustomDialog.newInstance()
+            dialog.setOnOkButtonClickListener(View.OnClickListener {
+                //ダイアログから値を取得して、output用のTextViewに表示
+                val raize: Long = dialog.inputValue!!
+                if (raize >= 1) {
+                    playerBetCoins[player] += raize.toInt()
+                    betCoin += raize.toInt()
+                    haveCoin[player] -= raize.toInt()
+                    lastRaisePlayer = player
+                    betCoinsText.text = getString(R.string.nowBet, betCoin)
+                    betCoinsText2.text = getString(R.string.nowBet, betCoin)
+                    textViews[player].text = getString(R.string.playerBet, haveCoin[player])
+                    nextPlayerAdd()
+                }
+                // ダイアログを消す
+                dialog.dismiss()
+            })
+            dialog.show(fragmentManager, "dialog_fragment")
+            dialog.isCancelable = false
         }
+
     }
 
     /**
@@ -234,6 +248,7 @@ class BetModeActivity : AppCompatActivity() {
     private fun winnerButton(bool: Boolean) {
         if (bool) {
             val playCount = playerState.count { it == "play" }
+            Log.d("CheckTag", "" + playCount)
             if ((playerState.count { it == "fold" }) == playerNum) {
                 resetTable()
             }
@@ -258,13 +273,24 @@ class BetModeActivity : AppCompatActivity() {
                 haveCoin[0] += betCoin * playCount
                 resetTable()
             }
-            player3buttons[0].setOnClickListener {
-                haveCoin[1] += betCoin * playCount
-                resetTable()
-            }
-            player2buttons[0].setOnClickListener {
-                haveCoin[2] += betCoin * playCount
-                resetTable()
+            if (playerNum <= 2) {
+                player2buttons[0].setOnClickListener {
+                    haveCoin[1] += betCoin * playCount
+                    resetTable()
+                }
+                player3buttons[0].setOnClickListener {
+                    haveCoin[2] += betCoin * playCount
+                    resetTable()
+                }
+            } else {
+                player3buttons[0].setOnClickListener {
+                    haveCoin[1] += betCoin * playCount
+                    resetTable()
+                }
+                player2buttons[0].setOnClickListener {
+                    haveCoin[2] += betCoin * playCount
+                    resetTable()
+                }
             }
             player4buttons[0].setOnClickListener {
                 haveCoin[3] += betCoin * playCount
