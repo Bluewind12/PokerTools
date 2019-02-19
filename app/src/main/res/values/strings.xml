@@ -55,6 +55,9 @@
     <string name="newCoin">初期コイン数</string>
     <string name="betCoin">基本掛けコイン</string>
     <string name="start">スタート</string>
+    <string name="newCoinInfo">最初に持っているコイン数</string>
+    <string name="betCoinInfo">ベースとなる掛けコイン</string>
+
 
     <!-- ベット画面 -->
     <string name="call">コール</string>

@@ -351,7 +351,7 @@ class BetModeActivity : AppCompatActivity() {
     private fun setStateColors() {
         for (i in 0 until 4) {
             when {
-                playerState[i].equals("fold") -> textViews[i].setTextColor(resources.getColor(R.color.grayColor))
+                playerState[i] == "fold" -> textViews[i].setTextColor(resources.getColor(R.color.grayColor))
                 lastRaisePlayer == i -> textViews[i].setTextColor(resources.getColor(R.color.redColor))
                 else -> textViews[i].setTextColor(resources.getColor(R.color.defaultTextColor))
             }
