@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PokerTools</string>
+    <string name="app_name">ポーカーツール！</string>
 
     <!-- タブ -->
     <string name="tab1">役一覧</string>
@@ -110,6 +110,6 @@
     <string name="winner">勝った</string>
 
     <!-- URL -->
-    <string name="privacy">https://www.gensounosakura.work/</string>
+    <string name="privacy">https://www.gensounosakura.work/posts/5751685</string>
     <string name="enquete">https://www.gensounosakura.work/pages/2473622/page_201812262034</string>
 </resources>
