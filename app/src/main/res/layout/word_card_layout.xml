@@ -7,7 +7,7 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:id="@+id/cardView"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="2dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
     <!-- 以下に追加 -->
@@ -22,12 +22,8 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/wordJpText" android:layout_weight="1"
-                android:textSize="24sp" android:padding="8dp"/>
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="10sp" android:layout_weight="1" android:padding="8dp"/>
+                android:textSize="24sp" android:padding="8dp" android:textColor="@color/colorAccent"/>
         <TextView
-                android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/wordDesText" android:layout_weight="1"
                 android:padding="8dp"/>
