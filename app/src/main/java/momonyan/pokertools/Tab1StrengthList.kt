@@ -28,6 +28,7 @@ class Tab1StrengthList : Fragment() {
         roleNameEngList = resources.getStringArray(R.array.roleListEng)
         roleDescription = resources.getStringArray(R.array.roleDescription)
         roleDrawable = arrayOf(
+            R.drawable.role_0_five,
             R.drawable.role_1_royal,
             R.drawable.role_2_straight_flash,
             R.drawable.role_3_four,
@@ -44,8 +45,8 @@ class Tab1StrengthList : Fragment() {
             for (i in 0 until roleNameEngList.size) {
                 mDataList.add(
                     RoleDataClass(
-                        "${roleNameEngList[i]}",
-                        "${roleNameList[i]}",
+                        roleNameEngList[i],
+                        roleNameList[i],
                         "説明\n${roleDescription[i]}",
                         roleDrawable[i]
                     )

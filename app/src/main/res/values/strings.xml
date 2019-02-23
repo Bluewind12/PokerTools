@@ -8,6 +8,7 @@
 
     <!-- 役名 -->
     <string-array name="roleListJp">
+        <item>ファイブカード</item>
         <item>ロイヤルフラッシュ</item>
         <item>ストレートフラッシュ</item>
         <item>フォーカード</item>
@@ -20,6 +21,7 @@
         <item>ハイカード</item>
     </string-array>
     <string-array name="roleListEng">
+        <item>Five Of A Kind</item>
         <item>Royal Flush</item>
         <item>Straight Flush</item>
         <item>Four Of A Kind</item>
@@ -32,6 +34,7 @@
         <item>High Card</item>
     </string-array>
     <string-array name="roleDescription">
+        <item>ワイルドカード(Joker)を使用するルールの場合の最強役\n４枚の同じ数字＋ワイルドカード\n別名「ファイブ・オブ・ア・カインド」</item>
         <item>10.J.Q.K.Aで5枚が全て同じマーク\n別名「ロイヤルストレートフラッシュ」</item>
         <item>連続した5つの数字で5枚全てが同じマーク\n 別名「クワッズ」「フォー・オブ・ア・カインド」</item>
         <item>同じ数字のカードを4枚揃える役</item>
@@ -84,7 +87,7 @@
         <item>自分のハンドが弱くても、強そうに見せるプレイのこと\nハッタリ</item>
         <item>賭けること</item>
         <item>場全体の賭けコインの合計</item>
-        <item>カードの数値のこと\n強さ：Ａ＞Ｋ＞Ｑ＞Ｊ＞10＞９＞８＞７＞６＞５＞４＞３＞２の順</item>
+        <item>カードの数値のこと\n強さ：A＞K＞Q＞J＞10＞9＞8＞7＞6＞5＞4＞3＞2の順</item>
         <item>掛け金を増やすこと</item>
     </string-array>
 
