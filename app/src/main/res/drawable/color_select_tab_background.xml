@@ -2,14 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- セレクト時 -->
     <item android:state_selected="true">
-        <shape>
+        <shape android:shape="rectangle">
+            <corners android:topLeftRadius="20sp" android:topRightRadius="20sp"/>
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>
 
     <!-- 非セレクト時 -->
     <item android:state_selected="false">
-        <shape>
+        <shape android:shape="rectangle">
+            <corners android:topLeftRadius="20dp" android:topRightRadius="20dp"/>
             <solid android:color="#FFFFFF"/>
         </shape>
     </item>
