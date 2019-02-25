@@ -51,9 +51,8 @@
             nendsdk:NendSpotId="@integer/Ad50ID"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/design_default_color_primary"
             nendsdk:NendAdjustSize="true"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_width="wrap_content" tools:background="@color/design_default_color_primary"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -19,6 +19,11 @@ class WordAdapter(private val mValues: ArrayList<WordDataClass>) : RecyclerView.
         holder.mWordEng.text = item.eng
         holder.mWordJp.text = item.jp
         holder.mWordDescription.text = item.description
+
+
+        holder.mWordCardView.setOnLongClickListener {
+            true
+        }
     }
 
     override fun getItemCount(): Int {

@@ -30,9 +30,9 @@ class Tab2WordList : Fragment() {
             for (i in 0 until wordNameList.size) {
                 mDataList.add(
                     WordDataClass(
-                        "${wordNameEngList[i]}",
-                        "${wordNameList[i]}",
-                        "${wordNameDescriptionList[i]}"
+                        wordNameEngList[i],
+                        wordNameList[i],
+                        wordNameDescriptionList[i]
                     )
                 )
             }
