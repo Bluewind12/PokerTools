@@ -6,4 +6,5 @@
     <color name="redColor">#FF0000</color>
     <color name="grayColor">#AAAAAA</color>
     <color name="defaultTextColor">#808080</color>
+    <color name="tabBackGray">#E7E7E7</color>
 </resources>

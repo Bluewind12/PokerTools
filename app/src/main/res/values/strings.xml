@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ポーカーツール！</string>
+    <string name="app_name">ポーカー\nツール！</string>
 
     <!-- タブ -->
     <string name="tab1">役一覧</string>
