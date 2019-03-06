@@ -79,6 +79,19 @@ class MainActivity : AppCompatActivity() {
                     .show()
                 return true
             }
+            R.id.menu0 -> {
+            AlertDialog.Builder(this)
+                .setTitle("Webページを開きます")
+                .setMessage("幻想乃桜工房のHPを開きます\nよろしいですか？")
+                .setPositiveButton("OK") { _, _ ->
+                    val uri = Uri.parse(getString(R.string.fantasyBlossomURL))
+                    val i = Intent(Intent.ACTION_VIEW, uri)
+                    startActivity(i)
+                }
+                .setNegativeButton("キャンセル", null)
+                .show()
+            return true
+        }
         }
         return super.onOptionsItemSelected(item)
     }
