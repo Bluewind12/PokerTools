@@ -1,6 +1,5 @@
 package momonyan.pokertools
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             R.id.menu2 -> {
                 AlertDialog.Builder(this)
                     .setTitle("Webページを開きます")
-                    .setMessage("プライバシーポリシーのページを開きます\nよろしいですか？")
+                    .setMessage("意見感想のページを開きます\nよろしいですか？")
                     .setPositiveButton("OK") { _, _ ->
                         val uri = Uri.parse(getString(R.string.enquete))
                         val i = Intent(Intent.ACTION_VIEW, uri)
@@ -91,7 +90,20 @@ class MainActivity : AppCompatActivity() {
                 .setNegativeButton("キャンセル", null)
                 .show()
             return true
-        }
+            }
+            R.id.menuReview -> {
+                AlertDialog.Builder(this)
+                    .setTitle("ストアを開きます")
+                    .setMessage("ぜひレビューをお願いします！！")
+                    .setPositiveButton("OK") { _, _ ->
+                        val uri = Uri.parse(getString(R.string.reviewURL))
+                        val i = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(i)
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

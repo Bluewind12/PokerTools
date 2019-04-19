@@ -14,4 +14,7 @@
     <item android:title="@string/opinionBox"
           android:id="@+id/menu2"
           app:showAsAction="never"/>
+
+    <item android:title="@string/reviewString"
+          android:id="@+id/menuReview"/>
 </menu>
