@@ -116,9 +116,9 @@
     <string name="privacy">https://www.gensounosakura.work/posts/5751685</string>
     <string name="enquete">https://www.gensounosakura.work/pages/2473622/page_201812262034</string>
     <string name="fantasyBlossomURL">https://www.gensounosakura.work/</string>
-    <string name="reviewURL">market://details?id=momonyan.mahjongg_tools</string>
+    <string name="reviewURL">market://details?id=momonyan.pokertools</string>
     <string name="hp">幻想乃桜工房のHP</string>
     <string name="privacyString">プライバシーポリシー</string>
     <string name="opinionBox">意見・報告はこちら</string>
-    <string name="reviewString">レビュー</string>
+    <string name="reviewString">レビュー(PlayStore)</string>
 </resources>

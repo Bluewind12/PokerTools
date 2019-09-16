@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menuReview -> {
                 AlertDialog.Builder(this)
-                    .setTitle("ストアを開きます")
+                    .setTitle("プレイストアを開きます")
                     .setMessage("ぜひレビューをお願いします！！")
                     .setPositiveButton("OK") { _, _ ->
                         val uri = Uri.parse(getString(R.string.reviewURL))
